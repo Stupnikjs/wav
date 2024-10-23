@@ -1,0 +1,4 @@
+*/bin/
+*/zig-cache/
+*/zig-out/
+*/.venv/
