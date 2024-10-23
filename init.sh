@@ -1,0 +1,1 @@
+alias init="source ./plotter/.venv/Scripts/activate"
