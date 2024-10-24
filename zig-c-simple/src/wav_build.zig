@@ -94,9 +94,9 @@ pub fn CreateWavFile(sample_rate: u32, sec_length: u32, filename: []const u8) !v
         // failing
         const num: f32 = std.math.cos(2 * std.math.pi * MIDDLE_C * float_i / float_sr) * 1000;
         const truc: f32 = std.math.trunc(num);
-        const intnum: usize = @intFromFloat(truc);
+        const intnum: isize = @intFromFloat(truc);
         std.debug.print("truc {d}", .{truc});
-        const byte_num = tobytes(usize, intnum);
+        const byte_num = tobytes(isize, intnum);
         _ = try file.write(byte_num);
     }
 }
