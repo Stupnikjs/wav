@@ -12,7 +12,7 @@
 // https://docs.fileformat.com/audio/wav/
 
 
-void create_wav(int notes[4])
+void create_wav()
 {
 
     struct wav_header
@@ -44,8 +44,7 @@ const int sample_rate = 8000;
 const int duration_seconds = 14;
 //const int buffer_size = sample_rate * duration_seconds;
 
-const int len_notes = sizeof(notes) / sizeof(notes[0]); 
-const int BUFFER_SIZE = (sample_rate * duration_seconds * len_notes);  // sample_rate * duration_seconds
+const int BUFFER_SIZE = (sample_rate * duration_seconds * 4);  // sample_rate * duration_seconds
 short int buffer[BUFFER_SIZE] = {};
 
 

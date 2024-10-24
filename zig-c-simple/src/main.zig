@@ -1,12 +1,10 @@
 const std = @import("std");
+const wav_build = @import("wav_build.zig");
 
 const wav = @cImport({
-    @cInclude("wav.c"); 
+    @cInclude("wav.c");
 });
 
-
 pub fn main() !void {
-    _ = wav.create_wav(); 
+    try wav_build.CreateWavFile(8000, 10, "test.wav");
 }
-
-
