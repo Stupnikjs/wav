@@ -44,8 +44,8 @@ const int sample_rate = 8000;
 const int duration_seconds = 14;
 //const int buffer_size = sample_rate * duration_seconds;
 
-
-#define BUFFER_SIZE (sample_rate * duration_seconds * notes.length)  // sample_rate * duration_seconds
+const int len_notes = sizeof(notes) / sizeof(notes[0]); 
+const int BUFFER_SIZE = (sample_rate * duration_seconds * len_notes);  // sample_rate * duration_seconds
 short int buffer[BUFFER_SIZE] = {};
 
 
@@ -71,8 +71,9 @@ const int header_length = sizeof(struct wav_header);
   FILE *fcsv = fopen("plot.csv", "w");
   // Playing a C Note
   for (int i = 0; i < BUFFER_SIZE; i++) {
-    buffer[i] = (short int)((cos((2 * M_PI * MIDDLE_C * i) / sample_rate) * 1000));
-    fprintf(fcsv, "%d\n", buffer[i]);
+    if (i <= BUFFER_SIZE / 4) buffer[i] = (short int)((cos((2 * M_PI * MIDDLE_C * i) / sample_rate) * 1000));
+    if (i > BUFFER_SIZE / 4 && i <= BUFFER_SIZE / 2) buffer[i] = (short int)((cos((2 * M_PI * MIDDLE_D * i) / sample_rate) * 1000));
+    if (i > BUFFER_SIZE / 2) buffer[i] = (short int)((cos((2 * M_PI * MIDDLE_E * i) / sample_rate) * 1000));
   }
 
   wavh.dlength = BUFFER_SIZE * wavh.bytes_per_samp;
